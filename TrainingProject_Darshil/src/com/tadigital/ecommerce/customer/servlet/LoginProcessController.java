@@ -32,7 +32,7 @@ public class LoginProcessController extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("CUSTOMERDATA", customer);
 			session.setAttribute("check", 2);
-			RequestDispatcher rd = request.getRequestDispatcher("CustomerAccount.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("CustomerAccounts.jsp");
 			rd.forward(request, response);
 		} else {
 			HttpSession session = request.getSession();
