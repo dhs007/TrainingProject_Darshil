@@ -1,10 +1,13 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+ <%@page isErrorPage="true" %>
 <!DOCTYPE html>
 <html>
-	<head>
+<head>
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="If=edge">
 		<meta name="viewport" content="width-device-width,initial-scale=1">
-		<title>Customer Account</title>
+		<title>Exception Page</title>
 		
 		
 		<!-- STYLESHEET FOR MAPS -->
@@ -120,7 +123,7 @@
 				
 				<!-- COL1 STARTS -->
 				<div class="col-md-4 cc">
-					<b class="lbl1">MY ACCOUNT</b>
+					<b class="lbl1">Exception Page</b>
 					<br>
 				</div>
 				<!-- COL1 ENDS -->
@@ -128,181 +131,43 @@
 				
 				<!-- COL2 STARTS -->
 				<div class="col-md-4 ccrr">
-					<h5><a class="links">HOME</a> / MY ACCOUNT </h5>
+					<h5><a class="links">HOME</a> / Exception Page</h5>
 					<br>
 				</div>
 				<!-- COL2 ENDS -->
 				
 			<br>
 			<br>
-			<br/>
+			
 			</div>
 		
 			<!-- ROW 3 ENDS -->
 			
-		<!-- ROW 4 STARTS -->
-
-		<div class="row">
-			<br/><br/>
-			<div class="col-md-1"></div>
-			<!-- 1 COLUMN LENGTH OF MARGIN LEFT -->
-			<div class="col-md-7">
-				<span id="r4_c2_text"> Change your personal details or your
-					password here. </span><br>
-				<br> <span id="r4_c2_text2"> Pellentesque habitant morbi
-					tristique senectus et netus et malesuada fames ac turpis egestas </span>
-				<hr id="h_line">
-				<span id="text_pass"> <strong>CHANGE PASSWORD</strong><br>
-				</span> <span>
-						
-				</span><br>
-				
-				 <!-- CHANGE PASSWORD FORM -->
-				 
-				<form action="PasswordChange" method="post"> 
-				
-					<label for="f1" class="ca_space ca_label">Old password</label><br/>
-					<input type="password" name="f1" class="ca_pa1 ca_space"><br/>
-					<label for="f2" class="ca_space ca_label ca_pa1">New password</label>
-					<label for="f3" class="ca_space ca_label ca_pa1 ca_pa2">Retype new password</label>
-					<input type="password" name="f2" class="ca_pa1 ca_space">
-					<input type="password" name="f3" class="ca_pa1 ca_space ca_pa2"><br/>
-					<button class="btn2 ca_cen"><span class="glyphicon glyphicon-floppy-saved"> SAVE NEW PASSWORD</span></button>
-				
-				</form>
+			<!-- ROW 4 STARTS -->
+			
+			
+			<div class="row exec_init_margin">
+			
 				<br/>
-					<%
-						 
-		 					
-			 					int  c1=(int)session.getAttribute("check");
-			
-			 					if(c1==-3)
-								{
-			 					%>	
-								<div class="alert alert-danger fade in text-center">Error Updating Password, Please Check Again</div>
-								<%
-								}
-			 					if(c1==3)
-								{
-			 					%>	
-								<div class="alert alert-success text-center">Password Updated Successfully</div>
-								<%
-								}
-			
-							 
-					%>
-				<br>
-				<hr id="h_line">
-				<br>
-				<span id="text_pass"> <strong>PERSONAL DETAILS</strong><br>
-				</span>
-				<hr id="line_short_hr">
-				<br>
-				<form action="CustomerAccount" method="post" class="form-inline">  	<!-- CUSTOMER DETAILS FORM -->
-					<label for="f4" class="ca_space ca_label ca_pa1">First Name</label>
-					<label for="f5" class="ca_space ca_label ca_pa1 ca_pa2">Last Name</label>
-					<input type="text" name="f4" class="ca_pa1 ca_space">
-					<input type="text" name="f5" class="ca_pa1 ca_space1 ca_pa2"><br/>
-					<div class="ca_space1">Gender</div>
-					
-					<input type="radio" name="f6" value="Male">
-					<label for="f6" class="ca_label">Male</label><br/>
-					<input type="radio" name="f6" value="Female">
-					<label for="f6" class="ca_label">Female</label><br/>
-					<input type="radio" name="f6">
-					<label for="f6"  class="ca_space ca_label">Transgender</label><br/>
-				    
-					<div  class="ca_space"><label for="f7" class="ca_label">Address</label></div>
-					 <textarea class="ca_space1" name="f7" rows="4" cols="120">
-
-					</textarea> 
-											
-					<label for="f8" class="ca_space ca_pa0 ca_label">City</label>
-					<label for="f9" class="ca_space ca_pa0 ca_label ca_pa2"> Zip</label>
-					<label for="f10" class="ca_space ca_pa0 ca_label ca_pa2"> State</label>
-					<label for="f11" class="ca_space ca_pa0  ca_label  ca_pa2"> Country</label><br/>
-					<input type="text" name="f8" class="ca_space ca_pa0">
-					<input type="text" name="f9" class="ca_space ca_pa0 ca_pa2">
-					<select name="f10" class="ca_space ca_pa0 ca_pa2">
-					  <option value="J&k">Jammu & Kashmir</option>
-					  <option value="Telengana">Telengana</option>
-					  <option value="Haryana">Haryana</option>
-					  <option value="Metro Droit">Metro Droit</option>
-					</select>
-					<select name="f11" class="ca_space ca_pa0 ca_pa2">
-					  <option value="India">India</option>
-					  <option value="U.S.">U.S.</option>
-					  <option value="U.K.">U.K.</option>
-					  <option value="Canada">Canada</option>
-					</select>					
-					<br/>
-					<label for="f13" class="ca_space ca_label ca_pa1">Contact Number</label>
-					<label for="f12" class="ca_space ca_label ca_pa1 ca_pa2">Email</label>
-					<input type="text" name="f12" class="ca_pa1 ca_space">
-					<input type="text" name="f13" class="ca_pa1 ca_space1 ca_pa2"><br/>
-				<br>
-				<button class="btn2 ca_cen">
-					<i class="fa fa-folder"></i> Save Changes
-				</button>
-			</form>
-			<br/>
-			
-			<%
-						 
-		 					
-			 					int  c=(int)session.getAttribute("check");
-			
-			 					if(c==-5)
-								{
-			 					%>	
-								<div class="alert alert-danger fade in text-center">Details Failed to Update!!</div>
-								<%
-								}
-			 					if(c==5)
-								{
-			 					%>	
-								<div class="alert alert-success text-center">Details Updated Successfully</div>
-								<%
-								}
-			
-							 
-					%>
-			
+				<br/>
+				<hr>
+				<span class="exec_top_text"><strong>Sorry for the inconvenience - The Page you are looking for have a Technical Error </strong></span>
+				<br/>
+				<span class="exec_normal_text">Kindly proceed to the Home page or Report this issue to Website Administrator with the Description mentioned below:</span>
+				<br/><br/>
+				<button class="btn2 exec_button1"><span class="glyphicon glyphicon-home"> Home</span></button>
+				<button class="btn2"><span class="glyphicon glyphicon-eye-close"> Report</span></button>
+				<br/><br/>
+				<span class="exec_error_txt"><%= exception.getStackTrace() %></span>
+				<br/>
+				<br/>
 			</div>
-			<!-- COL2 STARTS -->
-			<div class="col-md-2" id="row4">
-				<br>
-				<br>
-				<div class="row">
-					<H4>
-						<b>CUSTOMER SECTION</b>
-					</H4>
-				</div>
-				<div class="row">
-					<hr class="hrrule2">
-				</div>
-				<div class="row">
-					<div class="vertical-menu">
-						<a href="#" class="active"><span
-							class="glyphicon glyphicon-list"></span>&nbsp;My Order</a> <a
-							href="#"><span class="glyphicon glyphicon-heart"></span>&nbsp;My
-							Wishlist</a> <a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp;My
-							Account</a> <a href="Logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Logout</a>
-
-					</div>
-				</div>
-			</div>
-			<!-- COL2 ENDS -->
-		</div>
-
-
-
-		<!-- ROW 4 ENDS -->
-		<br>
-		<br>
-
-
-		<!-- ROW5 STARTS -->
+			
+			
+			<!-- ROW 4 ENDS -->
+			
+			
+					<!-- ROW5 STARTS -->
 	 		<div class="row row1">
 	 		<br><br>
 	 		

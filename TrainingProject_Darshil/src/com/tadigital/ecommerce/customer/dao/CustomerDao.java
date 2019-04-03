@@ -67,5 +67,61 @@ public class CustomerDao extends Dao {
 		return status;
 	}
 	
+	public boolean updateCustomerById(Customer customer)
+	{
+		boolean status = false;
+		Connection con = openConnection();
+		Statement stmt = openStatement(con);
+		ResultSet rs = null;
+		
+		try {
+			
+			//UPDATE customer_information SET cust_gender=customer.getGender(), cust_address=customer.getAddress(), cust_city=customer.getCity,  cust_zip=customer.getZip(),
+			//cust_state=customer.getState(), cust_country=customer.getCountry
+			String sql = "UPDATE customer_information SET cust_gender = '" + customer.getGender() +"', cust_address='" +customer.getAddress()+"', cust_city='" +customer.getCity()+"',  cust_zip='"+customer.getZip()+"',cust_state='"+customer.getState()+"' ,cust_country='"+customer.getCountry()+"',cust_contact='"+customer.getContact()+"' WHERE cust_id='"+customer.getId()+"'";
+			int row = stmt.executeUpdate(sql);
+			if(row!=0) {
+				status = true;
+				
+			}
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			closeStatement(stmt);
+			closeResultSet(rs);
+			closeConnection(con);
+		}
+		
+		return status;
+		
+	}
+	
+	public boolean updateCustomerPasswordById(Customer customer)
+	{
+		boolean status = false;
+		Connection con = openConnection();
+		Statement stmt = openStatement(con);
+		
+try {
+			
+			//UPDATE customer_information SET cust_gender=customer.getGender(), cust_address=customer.getAddress(), cust_city=customer.getCity,  cust_zip=customer.getZip(),
+			//cust_state=customer.getState(), cust_country=customer.getCountry
+			String sql = "UPDATE customer_information SET cust_pwd = '" + customer.getPassword() +"' WHERE cust_id='"+customer.getId()+"'";
+			int row = stmt.executeUpdate(sql);
+			if(row!=0) {
+				status = true;
+				
+			}
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		} finally {
+			closeStatement(stmt);
+			closeConnection(con);
+		}
+		
+		return status;
+		
+	}
+	
 	
 }
