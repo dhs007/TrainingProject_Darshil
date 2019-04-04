@@ -13,37 +13,43 @@ import javax.servlet.http.HttpSession;
 import com.tadigital.ecommerce.customer.entity.Customer;
 import com.tadigital.ecommerce.customer.service.CustomerService;
 
-
 @WebServlet("/CustomerAccount")
 public class CustomerAccountController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-  
-    public CustomerAccountController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
-	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+	public CustomerAccountController() {
+		super();
+
 	}
 
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		try {
+			response.getWriter().append("Served at: ").append(request.getContextPath());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		Customer customer = new Customer();
-		customer=(Customer)session.getAttribute("CUSTOMERDATA");
-		String email=customer.getEmail();
-		String password=customer.getPassword();
-		String gender=request.getParameter("f6");
-		String address=request.getParameter("f7");
+		customer = (Customer) session.getAttribute("CUSTOMERDATA");
+		
+		String email = customer.getEmail();
+		String password = customer.getPassword();
+		String gender = request.getParameter("f6");
+		String address = request.getParameter("f7");
 		String city = request.getParameter("f8");
 		long zip = Long.parseLong(request.getParameter("f9"));
 		String state = request.getParameter("f10");
 		String country = request.getParameter("f11");
 		String contact = request.getParameter("f12");
+		
 		customer.setGender(gender);
 		customer.setAddress(address);
 		customer.setCity(city);
@@ -51,27 +57,40 @@ public class CustomerAccountController extends HttpServlet {
 		customer.setState(state);
 		customer.setCountry(country);
 		customer.setContact(contact);
-		
+
 		CustomerService customerService = new CustomerService();
-		
+
 		boolean status = customerService.updateCustomer(customer);
-		if(status) {
-			/*HttpSession session = request.getSession();*/
+		if (status) {
 			session.setAttribute("CUSTOMERFULLDATA", customer);
-			session.setAttribute("check", 5);
+			session.setAttribute("check", "detailsUpdated");
+			
 			RequestDispatcher rd = request.getRequestDispatcher("CustomerAccount.jsp");
 			System.out.println("Details Updated Succesfull");
-			rd.forward(request, response);
+			
+			try {
+				rd.forward(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		} else {
-			HttpSession ses = request.getSession();
-			session.setAttribute("check", -5);
+			session.setAttribute("check", "detailsNotUpdated");
 			RequestDispatcher rd = request.getRequestDispatcher("CustomerAccount.jsp");
 			System.out.println("Error");
-			//Write Error Message on the screen
-			rd.forward(request, response);
+			
+			try {
+				rd.forward(request, response);
+			} catch (Exception e) {
+
+				e.printStackTrace();
+			}
 		}
-		
-		doGet(request, response);
+
+		try {
+			doGet(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }
