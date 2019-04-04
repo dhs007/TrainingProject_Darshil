@@ -14,6 +14,7 @@ public class Customer {
 	private String state;
 	private String country;
 	private String contact;
+	private long lastLogInTime;
 	
 	public Customer()
 	{
@@ -22,7 +23,7 @@ public class Customer {
 	
 	public Customer(int id, String firstname, String lastname,String email,String password,
 			String gender, String address,String city, long zip, String state,  String country, 
-			 String contact) {
+			 String contact, long lastLogInTime) {
 		
 			this.id=id;
 			this.firstname=firstname;
@@ -36,6 +37,7 @@ public class Customer {
 			this.state=state;
 			this.country=country;
 			this.contact=contact;
+			this.lastLogInTime=lastLogInTime;
 		
 		}
 
@@ -134,4 +136,12 @@ public class Customer {
 	public void setContact(String contact) {
 		this.contact = contact;
 	}	
+	public void setLastLogInTime (long lastLogInTime)
+	{
+		this.lastLogInTime=lastLogInTime;
+	}
+	public long getLastLogInTime ()
+	{
+		return lastLogInTime;
+	}
 }
