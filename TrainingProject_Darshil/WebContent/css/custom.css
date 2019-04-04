@@ -533,11 +533,11 @@
 
 /*Error Page Body CSS*/
 
-.ep_box
+/* .ep_box
 {
 	margin-left:500px;
 	text-align:center;
-	/* text-align:center;  */
+	text-align:center; 
 	border-style: solid;
 	border-width:2px;
   	border-color: gray white gray white; 
@@ -551,7 +551,7 @@
 {
 	font-size:20px;
 }
-
+ */
 
 
 
@@ -600,4 +600,98 @@
 	background-color: black;
 	color: white;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.ep_row4
+{
+	margin-left:20px;
+	text-align: center;
+}
+.ep_box
+{
+	margin-left:250px !important;
+	text-align:center;
+	/* text-align:center;  */
+	border-style: solid;
+	border-width:2px;
+  	border-color: gray white gray white; 
+	width:1000px ;
+}
+.ep_sub3
+{
+	
+	margin-left: 0px;
+	color:#4fbfa8;
+	border-color: #4fbfa8;
+	background-color: white;
+	
+}
+.ep_sub4
+{
+	
+	margin-left: 250px;
+	color:#4fbfa8;
+	border-color: #4fbfa8;
+	background-color: white;
+	
+}
+.ep_sub5
+{
+	
+	margin-right: 250px;
+	color:#4fbfa8;
+	border-color: #4fbfa8;
+	background-color: white;
+	
+}
+#ep_box_p
+{
+	font-size:22px;
+}
+.ep_grey{
+	color:#c7c7c7;
+	font-size:16px;
+}
+.excep_mar_butt
+{
+	margin-left:100px;
+}
+.excep_mar_butt
+{
+	margin-right:100px;
+}
+.button_push
+{
+	margin-left: 30px;
+}
+.ep_set_box
+{
+	width:1000px !important;
+}
+
+.margin_set
+{
+	margin-left:10px !important;
+}
+
+
+
+
+
+
 
