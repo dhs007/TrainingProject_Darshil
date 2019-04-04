@@ -20,63 +20,81 @@ import javax.activation.FileDataSource;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMultipart;
 
-
 import com.tadigital.ecommerce.customer.dao.*;
 import com.tadigital.ecommerce.customer.entity.*;
 
-
 public class CustomerService {
-	
+
 	CustomerDao customerDao = new CustomerDao();
-	
-	public boolean registerCustomer(Customer customer) 
-	{
+
+	public boolean registerCustomer(Customer customer) {
 		boolean status = customerDao.insertCustomer(customer);
-		if(status) {
+		if (status) {
 			sendWelcomeMail(customer.getFirstname() + " " + customer.getLastname(), customer.getEmail());
 		}
 		return status;
 	}
-	public boolean loginCustomer(Customer customer)
-	{
-		boolean status = customerDao.selectCustomerByEmailAndPassword(customer);
-		return status;
-	}
+
 	
-	public boolean updateCustomer(Customer customer)
-	{
-		boolean status = customerDao.updateCustomerById(customer);
-		return status;
+	public boolean loginCustomer(Customer customer) {
+		return customerDao.selectCustomerByEmailAndPassword(customer);
 	}
+
 	
-	public boolean updatePassword(Customer customer)
-	{
+	public boolean updateCustomer(Customer customer) {
+		return customerDao.updateCustomerById(customer);
+
+	}
+
+	
+	public boolean updatePassword(Customer customer) {
 		boolean status = customerDao.updateCustomerPasswordById(customer);
-		if(status) {
-			sendPasswordChangeNotificationMail(customer.getFirstname() + " " + customer.getLastname(), customer.getEmail());
+		if (status) {
+			sendPasswordChangeNotificationMail(customer.getFirstname() + " " + customer.getLastname(),
+					customer.getEmail());
 		}
 		return status;
 	}
+	
 
+	public boolean sendReportService(Customer customer, String str) {
+		boolean status = false;
+		status = sendReportMail(customer.getFirstname() + " " + customer.getLastname(), customer.getEmail(), str);
+		return status;
+	}
+
+	
+	public boolean loginCustomerCookie(Customer customer) {
+		return customerDao.loginByCookie(customer);
+
+	}
+
+	
+	public boolean updateAfterCookie(Customer customer) {
+		return customerDao.cookieAddUpdate(customer);
+
+	}
+	
+
+	// MAIL SEND METHODS
 	public boolean sendWelcomeMail(String name, String email) {
 		boolean status = false;
-		
-		//MAIL SERVER CONFIGURATION
+
+		// MAIL SERVER CONFIGURATION
 		Properties properties = new Properties();
 		properties.put("mail.smtp.host", "smtp.gmail.com");
 		properties.put("mail.smtp.socketFactory.port", "465");
-		properties.put("mail.smtp.socketFactory.class",	"javax.net.ssl.SSLSocketFactory");
+		properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
 		properties.put("mail.smtp.auth", "true");
 		properties.put("mail.smtp.port", "465");
-		
-		//CONNECT TO MAIL SERVER
-		Session session = Session.getDefaultInstance(properties,new javax.mail.Authenticator() {
-																	protected PasswordAuthentication getPasswordAuthentication() {
-																		return new PasswordAuthentication("darshil.nbit@gmail.com","!Q@W#E$R%T^Y&U*I(O)P_{+}");
-																	}
-																});
-	
-																	
+
+		// CONNECT TO MAIL SERVER
+		Session session = Session.getDefaultInstance(properties, new javax.mail.Authenticator() {
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication("darshil.nbit@gmail.com", "!Q@W#E$R%T^Y&U*I(O)P_{+}");
+			}
+		});
+
 		try {
 			// COMPOSE MESSAGE
 			MimeMessage mimeMessage = new MimeMessage(session);
@@ -121,25 +139,25 @@ public class CustomerService {
 		return status;
 	}
 
+	
 	public boolean sendPasswordChangeNotificationMail(String name, String email) {
 		boolean status = false;
-		
-		//MAIL SERVER CONFIGURATION
+
+		// MAIL SERVER CONFIGURATION
 		Properties properties = new Properties();
 		properties.put("mail.smtp.host", "smtp.gmail.com");
 		properties.put("mail.smtp.socketFactory.port", "465");
-		properties.put("mail.smtp.socketFactory.class",	"javax.net.ssl.SSLSocketFactory");
+		properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
 		properties.put("mail.smtp.auth", "true");
 		properties.put("mail.smtp.port", "465");
-		
-		//CONNECT TO MAIL SERVER
-		Session session = Session.getDefaultInstance(properties,new javax.mail.Authenticator() {
-																	protected PasswordAuthentication getPasswordAuthentication() {
-																		return new PasswordAuthentication("darshil.nbit@gmail.com","!Q@W#E$R%T^Y&U*I(O)P_{+}");
-																	}
-																});
-	
-																	
+
+		// CONNECT TO MAIL SERVER
+		Session session = Session.getDefaultInstance(properties, new javax.mail.Authenticator() {
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication("darshil.nbit@gmail.com", "!Q@W#E$R%T^Y&U*I(O)P_{+}");
+			}
+		});
+
 		try {
 			// COMPOSE MESSAGE
 			MimeMessage mimeMessage = new MimeMessage(session);
@@ -184,5 +202,46 @@ public class CustomerService {
 		return status;
 	}
 
-}
+	
+	public boolean sendReportMail(String name, String email, String str) {
+		boolean status = false;
 
+		Properties properties = new Properties();
+		properties.put("mail.smtp.host", "smtp.gmail.com");
+		properties.put("mail.smtp.socketFactory.port", "465");
+		properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+		properties.put("mail.smtp.auth", "true");
+		properties.put("mail.smtp.port", "465");
+
+		// CONNECT TO MAIL SERVER
+		Session session = Session.getDefaultInstance(properties, new javax.mail.Authenticator() {
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication("darshil.nbit@gmail.com", "!Q@W#E$R%T^Y&U*I(O)P_{+}");
+			}
+		});
+		try {
+			// COMPOSE MESSAGE
+			MimeMessage mimeMessage = new MimeMessage(session);
+			mimeMessage.setSubject("Urgent Assistance Required for Exception");
+			mimeMessage.setFrom(new InternetAddress("darshil.nbit@gmail.com"));
+			mimeMessage.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
+			mimeMessage.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
+			mimeMessage.setRecipients(Message.RecipientType.CC, InternetAddress.parse(email));
+			mimeMessage.setRecipients(Message.RecipientType.CC, InternetAddress.parse(email));
+			mimeMessage.setRecipients(Message.RecipientType.BCC, InternetAddress.parse(email));
+			String msg = str + "\n\n"
+					+ "I have encountered with the above exception, request you to look in to it and provide me further assistance"
+					+ "\n\n" + "Regards," + "\n" + name + "\n" + email;
+			mimeMessage.setText(msg);
+
+			// SEND MAIL
+			Transport.send(mimeMessage);
+
+			status = true;
+		} catch (MessagingException mex) {
+			mex.printStackTrace();
+		}
+
+		return status;
+	}
+}
