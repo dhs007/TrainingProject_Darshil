@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"%>    
  <%@ page import="javax.servlet.*" %>
 
-<%-- <%
+<%
 Cookie[] allCookies = request.getCookies();
 if(allCookies != null) {
 	//SEARCH YOUR WEBSITE COOKIE
@@ -16,7 +16,7 @@ if(allCookies != null) {
 		}
 	}
 }
-%> --%>
+%>
 
 <!DOCTYPE html>
 <html>
@@ -45,7 +45,7 @@ if(allCookies != null) {
 	
 	<head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Sign In Sign Up Page</title>
 		<!-- STYLESHEET FOR MAPS -->
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -920,15 +920,15 @@ if(allCookies != null) {
 				<%
 						 if(!session.isNew())
 		 					{
-			 					int  c=(int)session.getAttribute("check");
+			 					String  c=(String)session.getAttribute("check");
 			
-			 					if(c==0)
+			 					if(c=="error_reg")
 								{
 			 					%>	
 								<div class="alert alert-danger fade in text-center">Registration Failed</div>
 								<%
 								}
-			 					if(c==1)
+			 					if(c=="reg_success")
 								{
 			 					%>	
 								<div class="alert alert-success text-center">Registration Successful</div>
@@ -958,15 +958,15 @@ if(allCookies != null) {
 					<p><br/>
 						<button class="btn2"><span class="glyphicon glyphicon-log-out"> LOG IN</span></button>
 					</p><br/>
-					stay signed in: <input type="checkbox" name="persist" value="yes"><br/>
+					stay signed in: <input type="checkbox" name="persist" value="Go!"><br/>
 					
 				</form> <br/>
 				<%
 						 if(!session.isNew())
 		 					{
-			 					int  c=(int)session.getAttribute("check");
+			 					String  c=(String)session.getAttribute("check");
 			
-			 					if(c==-1)
+			 					if(c=="not_login")
 								{
 			 					%>	
 								<div class="alert alert-danger fade in text-center">Login Failed</div>
