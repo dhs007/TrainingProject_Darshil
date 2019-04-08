@@ -690,8 +690,18 @@
 }
 
 
+.color_set
+{
+	color:white !important;
+}
 
 
-
-
-
+.back_color
+{
+	background-color: #696969 !important;
+	border-color: #696969 !important;
+}
+.do_grey
+{
+	color:#c0c0c0;
+}
