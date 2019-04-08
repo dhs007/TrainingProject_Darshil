@@ -75,6 +75,14 @@ public class CustomerService {
 
 	}
 	
+	
+	public boolean contactUsService(Customer customer, String subject, String message)
+	{
+		boolean status = false;
+		status = contactUsMail(customer.getFirstname() + " " + customer.getLastname(), customer.getEmail(), subject, message);
+		return status;
+	}
+	
 
 	// MAIL SEND METHODS
 	public boolean sendWelcomeMail(String name, String email) {
@@ -114,7 +122,7 @@ public class CustomerService {
 
 			mbp1 = new MimeBodyPart();
 			DataSource fds = new FileDataSource(
-					"D://Trainee Engineers March 2019/workspace/TrainingProject_Darshil/WebContent/images/logo.png");
+					"D://Trainee Engineers March 2019/workspace/TrainingProject_Darshil/WebContent/images/logo.jpg");
 			mbp1.setDataHandler(new DataHandler(fds));
 			mbp1.setHeader("Content-ID", "<image>");
 			mp.addBodyPart(mbp1);
@@ -177,7 +185,7 @@ public class CustomerService {
 
 			mbp1 = new MimeBodyPart();
 			DataSource fds = new FileDataSource(
-					"D://Trainee Engineers March 2019/workspace/TrainingProject_Darshil/WebContent/images/logo.png");
+					"D://Trainee Engineers March 2019/workspace/TrainingProject_Darshil/WebContent/images/logo.jpg");
 			mbp1.setDataHandler(new DataHandler(fds));
 			mbp1.setHeader("Content-ID", "<image>");
 			mp.addBodyPart(mbp1);
@@ -243,5 +251,46 @@ public class CustomerService {
 		}
 
 		return status;
+	}
+	
+	public boolean contactUsMail(String name, String custEmail, String subject, String message)
+	{
+		boolean status = false;
+		Properties properties = new Properties();
+		properties.put("mail.smtp.host", "smtp.gmail.com");
+		properties.put("mail.smtp.socketFactory.port", "465");
+		properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+		properties.put("mail.smtp.auth", "true");
+		properties.put("mail.smtp.port", "465");
+
+		// CONNECT TO MAIL SERVER
+		Session session = Session.getDefaultInstance(properties, new javax.mail.Authenticator() {
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication("darshil.nbit@gmail.com", "!Q@W#E$R%T^Y&U*I(O)P_{+}");
+			}
+		});
+		try {
+			// COMPOSE MESSAGE
+			MimeMessage mimeMessage = new MimeMessage(session);
+			mimeMessage.setSubject("Query Regarding " + subject);
+			mimeMessage.setFrom(new InternetAddress("darshil.nbit@gmail.com"));
+			mimeMessage.setRecipients(Message.RecipientType.TO, InternetAddress.parse(custEmail));
+			mimeMessage.setRecipients(Message.RecipientType.TO, InternetAddress.parse(custEmail));
+			mimeMessage.setRecipients(Message.RecipientType.CC, InternetAddress.parse(custEmail));
+			mimeMessage.setRecipients(Message.RecipientType.CC, InternetAddress.parse(custEmail));
+			mimeMessage.setRecipients(Message.RecipientType.BCC, InternetAddress.parse(custEmail));
+			String msg =  message + "\n\n" + "Regards," + "\n" + name + "\n" + custEmail;
+			mimeMessage.setText(msg);
+
+			// SEND MAIL
+			Transport.send(mimeMessage);
+
+			status = true;
+		} catch (MessagingException mex) {
+			mex.printStackTrace();
+		}
+
+		return status;
+		
 	}
 }
