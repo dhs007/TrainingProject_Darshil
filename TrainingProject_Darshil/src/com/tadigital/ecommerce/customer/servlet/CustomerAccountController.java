@@ -23,19 +23,20 @@ public class CustomerAccountController extends HttpServlet {
 	}
 
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		RequestDispatcher rd = request.getRequestDispatcher("CustomerAccount.jsp");
+		
 		try {
-			response.getWriter().append("Served at: ").append(request.getContextPath());
+			rd.forward(request, response);
 		} catch (Exception e) {
+
 			e.printStackTrace();
 		}
 	}
 
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		Customer customer = new Customer();
 		customer = (Customer) session.getAttribute("CUSTOMERDATA");
@@ -86,11 +87,6 @@ public class CustomerAccountController extends HttpServlet {
 			}
 		}
 
-		try {
-			doGet(request, response);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 
+	}
 }
