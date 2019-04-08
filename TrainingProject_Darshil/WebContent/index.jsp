@@ -49,40 +49,9 @@
 		
 			<!-- ROW1 STARTS -->
 			<div class="row row1" id="">
-			<br>
-			
-				
-				<!-- COL1 STARTS -->
-				<div class="col-md-6 cc">
-					Contact Us on +91 40 6617777
-					<br>
-				</div>
-				<!-- COL1 ENDS -->
-				
-				<!-- COL2 STARTS -->
-				<div class="col-md-4 button_push">
-					<form action = "SignInSignUpForms.jsp">
-						<button type="submit"><span class="glyphicon">&#xe161;</span>
-						SIGN IN</button>&nbsp;
-						<button type="submit">
-						<span class="glyphicon">&#xe008;</span>
-			 			SIGN UP
-		 			</button>
-		 		</form>
-		 		</div>
-		 		<!-- COL2 ENDS -->
-		 		
-		 		<!-- COL3 STARTS -->
-		 		<div class="col-md-1 mrsil">
-		 			<i style="font-size:15px" class="fa">&#xf09a;</i>&nbsp;
-		 			<i style="font-size:15px" class="fa">&#xf0d5;</i>&nbsp;
-		 			<i style="font-size:15px" class="fa">&#xf099;</i>&nbsp;
-		 			<i style='font-size:15px' class='fas'>&#xf0e0;</i>&nbsp;
-		 			
-		 		</div>
-		 		<!-- COL3 ENDS -->
-		 	
-		 	<br><br>	
+			<div class="row row1">
+			<%@ include file="row1.jsp" %>
+		</div>	
 		 	
 		 	</div>
 		 	<!-- ROW 1 ENDS -->
