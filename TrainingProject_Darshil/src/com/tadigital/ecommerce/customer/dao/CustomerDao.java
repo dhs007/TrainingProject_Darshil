@@ -57,6 +57,16 @@ public class CustomerDao extends Dao {
 				customer.setId(rs.getInt(1));
 				customer.setFirstname(rs.getString(2));
 				customer.setLastname(rs.getString(3));
+				customer.setEmail(rs.getString(4));
+				customer.setPassword(rs.getString(5));
+				customer.setGender(rs.getString(6));				
+				customer.setAddress(rs.getString(7));
+				customer.setCity(rs.getString(8));
+				//customer.setZip(Long.parseLong(rs.getString(9)));
+				customer.setState(rs.getString(10));
+				customer.setCountry(rs.getString(11));
+				customer.setContact(rs.getString(12));
+				
 			}
 		} catch (SQLException sqle) {
 			sqle.printStackTrace();
