@@ -37,8 +37,9 @@ public class LoginProcessController extends HttpServlet {
 
 			boolean status = customerService.loginCustomer(customer);
 			if (status) {
-
+				session.setAttribute("checkvar", "loggedIn");
 				session.setAttribute("CUSTOMERDATA", customer);
+				session.setAttribute("CUSTOMERFULLDATA", customer);
 				String staySignedIn = request.getParameter("persist");
 				if (staySignedIn != null) {
 					long curLogInTime = System.currentTimeMillis();
@@ -97,7 +98,7 @@ public class LoginProcessController extends HttpServlet {
 		boolean status = customerService.loginCustomerCookie(customer);
 		
 		if (status) {
-
+			session.setAttribute("checkvar", "loggedIn");
 			session.setAttribute("CUSTOMERDATA", customer);
 
 			RequestDispatcher rd = request.getRequestDispatcher("CustomerAccount.jsp");
