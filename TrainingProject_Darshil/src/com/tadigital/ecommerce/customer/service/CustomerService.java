@@ -99,7 +99,7 @@ public class CustomerService {
 		// CONNECT TO MAIL SERVER
 		Session session = Session.getDefaultInstance(properties, new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication("darshil.nbit@gmail.com", "XXXX");
+				return new PasswordAuthentication("darshil.nbit@gmail.com", "XXXX"); //Insert your mail account password by replacing XXXX
 			}
 		});
 
@@ -162,7 +162,7 @@ public class CustomerService {
 		// CONNECT TO MAIL SERVER
 		Session session = Session.getDefaultInstance(properties, new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication("darshil.nbit@gmail.com", "XXXX");
+				return new PasswordAuthentication("darshil.nbit@gmail.com", "XXXX");  //Insert your mail account password by replacing XXXX
 			}
 		});
 
@@ -224,7 +224,7 @@ public class CustomerService {
 		// CONNECT TO MAIL SERVER
 		Session session = Session.getDefaultInstance(properties, new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication("darshil.nbit@gmail.com", "XXXX");
+				return new PasswordAuthentication("darshil.nbit@gmail.com", "XXXX"); //Insert your mail account password by replacing XXXX
 			}
 		});
 		try {
@@ -266,7 +266,7 @@ public class CustomerService {
 		// CONNECT TO MAIL SERVER
 		Session session = Session.getDefaultInstance(properties, new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication("darshil.nbit@gmail.com", "XXXXX");
+				return new PasswordAuthentication("darshil.nbit@gmail.com", "XXXXX");   //Insert your mail account password by replacing XXXX
 			}
 		});
 		try {
